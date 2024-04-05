@@ -32,8 +32,45 @@ const TaskController = {
         }).join('')}
       `
       )
-    } catch {
-
+    } catch (error){
+      console.log(error)
+    }
+  },
+  async getByID(req, res) {
+    try {
+      const id = req.params._id
+      const task = await Task.findById(id)
+      res.json(task)
+    } catch (error) {
+      console.log(error)
+    }
+  },
+  async deleteTask (req, res) {
+    try {
+      const id = req.params._id
+      const deleteTask = await Task.findByIdAndDelete(id)
+      if(!deleteTask) {
+        return res.status(404).json({mensaje: "El task no existe" })
+      }
+      res.json({mensaje: "task eliminado", deleteTask})
+    } catch (error){
+      console.log(error)
+    }
+  },
+  async updateCompleted (req, res) {
+    try {
+      const id = req.params._id
+      const updateTask = await Task.findByIdAndUpdate(
+        id, {
+          completed: true
+        }, {new: true}
+      )
+      if (!updateTask) {
+        return res.status(404).json({mensaje: 'el task no existe'})
+      }
+      res.json(updateTask)
+    } catch (error) {
+      console.log(error)
     }
   }
 }
