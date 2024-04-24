@@ -17,7 +17,7 @@ const TaskController = {
         console.log(error)
     }
   },
-  // Esta es para ver el renderizado en SSR
+  // Esta es para ver el renderizado en SSR teste
   async getAllSSR (req, res) {
     try {
         const task = await Task.find();
