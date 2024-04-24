@@ -3,7 +3,7 @@ const dbConnection = require('./config/config')
 const app = express()
 require('dotenv').config()
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 5480
 const routes = require('./routes/tasks');
 
 app.use(express.json())
